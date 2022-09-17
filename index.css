@@ -1,0 +1,41 @@
+:root {
+--green: #75DF33;
+--yellow: #FFC857;
+--red: #CC2936;
+--black: #342E37;
+}
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--black);
+    
+}
+.form-pizza {
+    background-color: var(--green);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 40vw;
+    gap: 5vh;
+    border-radius: 14px;
+}
+
+.pizza-card {
+    background-color: var(--yellow);
+    border-radius: 14px;
+    height: 15vh;
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+h2, h4 {
+    margin: 0px;
+}
+small {
+    display: none;
+}
