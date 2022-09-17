@@ -32,10 +32,11 @@ body {
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    margin: 5px;
 }
 h2, h4 {
     margin: 0px;
 }
 small {
-    display: none;
+
 }

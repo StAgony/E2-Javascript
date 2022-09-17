@@ -36,16 +36,6 @@ let Cuatroquesos = {
 }
 const pizzas = [Muzzarela,Fugazeta,Especial,Cochina,Vegana,Cuatroquesos]
 
-console.log(pizzas)
-
-// <div class="pizza-cards">
-// <div class="pizza-card">
-//     <h2>nombre de la pizza</h2>
-//     <h4>precio de la pizza</h4>
-// </div>    
-// </div>
-
-// hacer variables
 const cards = document.getElementById('pizza--cards');
 const form = document.getElementById('pizza--form');
 const numeroped = document.getElementById('id-pizza')
@@ -63,16 +53,10 @@ const agregarpedido = (numerow) => {
     ]
 };
 const iniciarrender = () => {
-    console.log (pedidos)
-    cards.innerHTML = (renderizador(pedidos));
+    cards.insertAdjacentHTML('beforeend',renderizador(pedidos))
 }
 const renderizador = (ped) => {
-    console.log('ingrese al renderizadorr wache')
-    // console.log(pizzas[ped[ped.length-1]-1])
-    // console.log(pizzas[ped[ped.length-1]-1].nombre)
-    // console.log(pizzas[ped[ped.length-1]-1].precio)
-    return `<div class="pizza-card"> <h2> ${pizzas[ped[ped.length-1]-1].nombre} </h2> <h4> ${pizzas[ped[ped.length-1]-1].precio} </h4></div>`
-        
+    return `<div class="pizza-card"> <h2> ${pizzas[ped[ped.length-1]-1].nombre} </h2> <h4> ${pizzas[ped[ped.length-1]-1].precio} </h4></div>`        
 }
 const sumbiteador = (e) => {
     e.preventDefault();
@@ -84,13 +68,12 @@ const sumbiteador = (e) => {
     }
     else {
         console.log ('LA WEA NO VALIDA')
+        form.reset();
     }
 }
 const primerrender = () => {
     for (let cosa of pedidos){
-        console.log ('hola soy el primer reneder y voy por el item' + cosa);
-        console.log (pizzas[cosa-1].nombre);
-        cards.innerHTML = `<div class="pizza-card"> <h2> ${pizzas[cosa-1].nombre} </h2> <h4> ${pizzas[cosa-1].precio} </h4></div>`
+        cards.insertAdjacentHTML('beforeend',`<div class="pizza-card"> <h2> ${pizzas[cosa-1].nombre} </h2> <h4> ${pizzas[cosa-1].precio} </h4></div>`)
     }    
 }
 const init = () => {
