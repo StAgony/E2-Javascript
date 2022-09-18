@@ -1,3 +1,4 @@
+//////// variables 
 let Muzzarela = {
     id: 1,
     nombre: 'Muzzarela',
@@ -34,6 +35,7 @@ let Cuatroquesos = {
     precio:400,
     ingredientes:['masa de trigo','queso muzzarela','queso roquefort','queso fontina','queso parmesano','y condimentos'],
 }
+
 const pizzas = [Muzzarela,Fugazeta,Especial,Cochina,Vegana,Cuatroquesos]
 
 const cards = document.getElementById('pizza--cards');
@@ -41,62 +43,68 @@ const form = document.getElementById('pizza--form');
 const numeroped = document.getElementById('id-pizza')
 const error = form.querySelector('small')
 
-
 let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
 
-const setearlocal = () => {
-    localStorage.setItem('pedidos', JSON.stringify(pedidos))
-};
-const agregarpedido = (numerow) => {
-    pedidos = [
-        ...pedidos,
-        numerow
-    ]
-};
-const iniciarrender = () => {
-    cards.insertAdjacentHTML('beforeend',renderizador(pedidos))
+//////////////////////////////funciones///////////////////////////////////////////// 
+ const init = () => {
+    primerrender()
+    form.addEventListener('submit', sumbiteador);
 }
-const renderizador = (ped) => {
-    return `<div class="pizza-card"> <h2> ${pizzas[ped[ped.length-1]-1].nombre} </h2> <h4> ${pizzas[ped[ped.length-1]-1].precio} </h4></div>`        
+////////////////////////////////////////////////////////////////////////////////////
+const primerrender = () => {
+    for (let cosa of pedidos){
+        cards.insertAdjacentHTML('beforeend',`<div class="pizza-card"> <h2> ${pizzas[cosa-1].nombre} </h2> <h4> ${pizzas[cosa-1].precio} </h4></div>`);
+    }    
 }
+////////////////////////////////////////////////////////////////////////////////////
 const sumbiteador = (e) => {
     e.preventDefault();
     if (pedidovalido(numeroped.value)){
-        error.classList.remove("show")
+        error.classList.remove("show");
         agregarpedido(numeroped.value);
         form.reset();
         setearlocal();
         iniciarrender();
     }
     else {    
-        error.classList.add("show")
+        error.classList.add("show");
     }
 }
-const primerrender = () => {
-    for (let cosa of pedidos){
-        cards.insertAdjacentHTML('beforeend',`<div class="pizza-card"> <h2> ${pizzas[cosa-1].nombre} </h2> <h4> ${pizzas[cosa-1].precio} </h4></div>`)
-    }    
-}
-const init = () => {
-    primerrender()
-    form.addEventListener('submit', sumbiteador);
-}
+////////////////////////////////////////////////////////////////////////////////////
 const pedidovalido = (numero) => {
-    if (numero >= 7 || numero == 0){
-        return false
+    if (numero >= 7 || numero <= 0){
+        return false;
     }
     else {
-        return true
+        return true;
     }
 }
+////////////////////////////////////////////////////////////////////////////////////
+const agregarpedido = (numerow) => {
+    pedidos = [
+        ...pedidos,
+        numerow
+    ]
+}
+////////////////////////////////////////////////////////////////////////////////////
+const setearlocal = () => {
+    localStorage.setItem('pedidos', JSON.stringify(pedidos));
+};
+////////////////////////////////////////////////////////////////////////////////////
+const iniciarrender = () => {
+    cards.insertAdjacentHTML('beforeend',renderizador(pedidos));
+}
+////////////////////////////////////////////////////////////////////////////////////
+const renderizador = (ped) => {
+    return `<div class="pizza-card"> <h2> ${pizzas[ped[ped.length-1]-1].nombre} </h2> <h4> ${pizzas[ped[ped.length-1]-1].precio} </h4></div>`;     
+}
+
+
+
 init ();
 
+////ya se que no era con cards pero queria probar ekisde
 
 
-// creal el local
-// ver si ya hay cards en el local
-//renderizador 
-// validador del numero
-// validacion y ejecucion 
-// actualizacion del local
-// renderizador de nuevo
+
+
