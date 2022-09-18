@@ -17,8 +17,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 30vh;
-    width: 40vw;
+    height: 40vh;
+    width: 60vw;
     gap: 5vh;
     border-radius: 14px;
 }
@@ -38,5 +38,12 @@ h2, h4 {
     margin: 0px;
 }
 small {
+    display: none;
+}
+small.show{
+    background-color: var(--red);
+    border-radius: 4px;
+    padding: 4px;
+    display: flex;
 
 }

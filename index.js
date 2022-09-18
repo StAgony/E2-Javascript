@@ -39,9 +39,10 @@ const pizzas = [Muzzarela,Fugazeta,Especial,Cochina,Vegana,Cuatroquesos]
 const cards = document.getElementById('pizza--cards');
 const form = document.getElementById('pizza--form');
 const numeroped = document.getElementById('id-pizza')
+const error = form.querySelector('small')
 
 
-let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [1];
+let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
 
 const setearlocal = () => {
     localStorage.setItem('pedidos', JSON.stringify(pedidos))
@@ -61,14 +62,14 @@ const renderizador = (ped) => {
 const sumbiteador = (e) => {
     e.preventDefault();
     if (pedidovalido(numeroped.value)){
+        error.classList.remove("show")
         agregarpedido(numeroped.value);
         form.reset();
         setearlocal();
         iniciarrender();
     }
-    else {
-        console.log ('LA WEA NO VALIDA')
-        form.reset();
+    else {    
+        error.classList.add("show")
     }
 }
 const primerrender = () => {
